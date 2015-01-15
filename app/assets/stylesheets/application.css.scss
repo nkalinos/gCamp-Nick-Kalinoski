@@ -1,2 +1,11 @@
 @import "bootstrap-sprockets";
  @import "bootstrap";
+ body {
+   padding-top: 50px;
+ }
+ .jumbotron {
+
+   background-image: url("http://www.jpl.nasa.gov/images/spitzer/pia09411-full.jpg");
+   background-size: cover;
+   color: #ffffff;
+ }
