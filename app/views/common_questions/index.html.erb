@@ -1,9 +1,15 @@
+<id="top">
+<div class="page-header">
 <h1>Frequently Asked Questions</h1>
+</div>
+
 
 <% @common_questions.each do |common_question| %>
 <li><%= link_to common_question.question, "##{common_question.slug}" %></li>
+
 <% end %>
 
+<br>
 
 <% @common_questions.each do |common_question| %>
 <p id="<%= common_question.slug %>"><strong> <%= common_question.question %></strong></p>
