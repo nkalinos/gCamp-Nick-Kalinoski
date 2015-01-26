@@ -5,6 +5,10 @@ development:
  <<: *default
  database: gcamp_development
 
+production:
+ <<: *default
+ database: gcamp_production
+
 test:
  <<: *default
  database: gcamp_test
