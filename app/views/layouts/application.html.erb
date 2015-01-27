@@ -7,6 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+<% if notice %>
+<div class="alert alert-success"><%= notice %></div>
+<% end %>
+
+
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
