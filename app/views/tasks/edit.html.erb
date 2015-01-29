@@ -1,7 +1,11 @@
 <h1>Editing Task</h1>
+
+
 <ol class="breadcrumb">
   <li><a href="/tasks">Tasks</a></li>
+  <li> <%= link_to @task.description, task_path(@task) %></li>
   <li class="active"><%= @task.description %></li>
 </ol>
+
 
 <%= render 'form' %>
