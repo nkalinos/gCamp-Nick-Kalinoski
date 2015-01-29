@@ -8,15 +8,11 @@
 </head>
 <body>
 
-  <% if notice %>
-  <div class="alert alert-success"><%= notice %></div>
-  <% end %>
-
 
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
-      
+
         <a class="navbar-brand" href="#">gCamp</a>
 
 
@@ -27,7 +23,11 @@
     </div>
   </nav>
   <div class="container" id="top">
-
+    <div class="container">
+    <% if notice %>
+    <div class="alert alert-success"><%= notice %></div>
+  </div>
+  <% end %>
     <%= yield %>
 
 

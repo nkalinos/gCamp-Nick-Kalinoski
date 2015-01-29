@@ -2,6 +2,17 @@ gCamp Project
 
 == README
 
+[View on Heroku](http://aqueous-mesa-7156.herokuapp.com/)
+
+to install:
+
+```
+
+bundle rake db:creat db:migrate db:seed
+rails s
+```
+
+
 * Ruby version
 2.2.0
 * System dependencies
