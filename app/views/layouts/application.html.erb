@@ -1,78 +1,74 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-  <title>GCamp</title>
-  <%= favicon_link_tag 'pokeball.ico' %>
-  <%= stylesheet_link_tag    'application' %>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
+ <title>gCamp</title>
+ <%= favicon_link_tag 'pokeball.ico' %>
+ <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+ <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+ <%= csrf_meta_tags %>
 </head>
 <body>
 
+ <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+   <div class="container">
+     <div class="navbar-header">
+       <a class="navbar-brand" href="/">gCamp</a>
+     </div>
+   </div>
+ </div>
 
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
+ <div class="container">
 
-        <a class="navbar-brand" href="#">gCamp</a>
+   <% flash.each do |type, message| %>
+   <% if type == "notice" %>
+   <div class="alert alert-success"><b><center><%= message %></b></center></div>
+   <% elsif type == "alert" %>
+   <div class="alert alert-danger"><b><center><%= message %></b></center></div>
+   <% end %>
+   <% end %>
 
+   <%= yield %>
 
-      </div>
-      <div id="navbar" class="navbar-collapse collapse">
+   <footer>
+     <div class="row">
+       <div class= "col-md-6">
+         <%= link_to "About", about_path %>
+         |
+         <%= link_to "Terms", terms_path %>
+         |
+         <%= link_to "FAQ", faq_path %>
+         |
+         <%= link_to "Tasks", tasks_path %>
+         |
+         <%= link_to "Users", users_path %>
+       </div>
 
-      </div><!--/.navbar-collapse -->
-    </div>
-  </nav>
-  <div class="container" id="top">
-    <div class="container">
-    <% if notice %>
-    <div class="alert alert-success"><%= notice %></div>
-  </div>
-  <% end %>
-    <%= yield %>
+       <div class="col-md-6 text-right">
+         <a href="https://www.linkedin.com/profile/view?id=380638818&trk=nav_responsive_tab_profile_pic">
+           <%= image_tag('footer/linkedin_icon.png', class: "img-footer") %>
+         </a>
+         <a href="https://github.com/nkalinos">
+           <%= image_tag('footer/GitHub-Mark.png', class: "img-footer") %>
+         </a>
+         <a href="https://twitter.com/nickkalinoski">
+           <%= image_tag('footer/twitter-bird-16x16.png', class: "img-footer") %>
+         </a>
+         <a href="https://students.gschool.it/students/216">
+           <%= image_tag("footer/gschool logo 2.jpeg", class: "img-footer") %>
+         </a>
+       </div>
+     </div>
+   </footer>
 
+ </div>
 
-    <footer>
-      <div class="row">
-        <div class="col-md-6">
-          <a href="/about">About</a>
+ <!-- Bootstrap core JavaScript
+ ================================================== -->
+ <!-- Placed at the end of the document so the pages load faster -->
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+ <script src="../../dist/js/bootstrap.min.js"></script>
+ <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+ <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 
-          |
-          <a href="/terms">Terms</a>
-          |
-          <a href="/faq">FAQ</a>
-          |
-          <a href="/tasks">Tasks</a>
-        </div>
-        <div class="col-md-6 text-right">
-
-          <a href="https://www.linkedin.com/pub/nick-kalinoski/a7/585/116/">
-            <img alt="Linked in" class="img-footer" src="https://g-camp.herokuapp.com/assets/linked_in-f852478f8950eb3fca3367cb545aaa52.jpg">
-          </a>
-          <a href="https://github.com/nkalinos">
-            <img alt="Github" class="img-footer" src="https://g-camp.herokuapp.com//assets/GitHub-de8164cc6a609537cfdab331e002ebb3.png">
-          </a>
-          <a href="https://twitter.com/NickKalinoski">
-            <img alt="Twitter" class="img-footer" src="https://g-camp.herokuapp.com//assets/Twitter-0c8c529fb7181e05ab5c30416e3a70fa.png">
-          </a>
-
-          <a href="http://students.gschool.it/students/216">
-            <img alt="Galvanize g" class="img-footer" src="https://g-camp.herokuapp.com//assets/galvanize-g-b3da24895ed7d4fd33c43d9226c16242.png">
-          </a>        </div>
-        </footer>
-      </div> <!-- /container -->
-    </div>
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-
-
-  </body>
-  </html>
+</body>
+</html>
