@@ -1,0 +1,11 @@
+<h1>Editing Project</h1>
+
+
+<ol class="breadcrumb">
+  <li><a href="/projects">Projects</a></li>
+  <li> <%= link_to @project.name, project_path(@project) %></li>
+  <li class="active"><%= @project.name  %></li>
+</ol>
+
+
+<%= render 'form' %>
