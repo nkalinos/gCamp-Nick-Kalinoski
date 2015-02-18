@@ -9,6 +9,7 @@
   <li class="active">/ New Task</li>
 </ol>
 
+<%= render(:partial => "shared/errors", :locals => {:object => @task}) %>
 
 <%= render 'form' %>
 
