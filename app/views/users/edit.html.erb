@@ -1,5 +1,7 @@
 
 
 <h1>Edit User</h1>
+<%= render(:partial => "shared/errors", :locals => {:object => @user}) %>
+
 <%= render 'user' %>
 <%= link_to 'Delete', user_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>

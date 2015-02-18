@@ -9,6 +9,7 @@
   <li class="active">/ Create Projects</li>
 </ol>
 
+<%= render(:partial => "shared/errors", :locals => {:object => @project}) %>
 
 <%= render 'form' %>
 
