@@ -1,4 +1,4 @@
-<%= form_for(@task, html: {class:"form-horizontal"}) do |f| %>
+<%= form_for [@project, @task], html: {class:"form-horizontal"} do |f| %>
 
 
 <div class="form-group">
@@ -24,7 +24,7 @@
 </div>
 
 
-<% if @task.description != nil %>
+
 
 <div class="form-group">
   <div class="field">
@@ -36,14 +36,14 @@
     </div>
   </div>
 </div>
-<% end %>
+
 
 
 <div class="form-group">
   <div class="col-md-4 col-md-offset-2">
     <div class="action">
       <%= f.submit class: "btn btn-primary btn-md active" %>
-      <%= f.button link_to('Cancel', tasks_path), class: "btn btn-default btn-md active" %>
+      <%= f.button link_to('Cancel', project_tasks_path), class: "btn btn-default btn-md active" %>
     </div>
   </div>
 </div>

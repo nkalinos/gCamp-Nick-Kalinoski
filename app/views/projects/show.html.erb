@@ -5,6 +5,8 @@
   </div>
   <h1> <%= @project.name %></h1>
 </div>
+<%= link_to "Project Tasks", project_tasks_path(@project) %>
+<%= link_to "New Task", new_project_task_path(@project) %>
 
 <p>
   <ol class="breadcrumb">
