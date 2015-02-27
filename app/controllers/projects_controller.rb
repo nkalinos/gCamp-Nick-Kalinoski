@@ -1,6 +1,10 @@
 class ProjectsController <ApplicationController
 
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate
+  def authenticate
+    redirect_to login_path, :alert => 'You need to be logged in to see this.' if not current_user
+  end
 
 
   def index
