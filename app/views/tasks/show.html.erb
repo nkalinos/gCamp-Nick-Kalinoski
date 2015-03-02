@@ -1,7 +1,7 @@
 
 <div class="page-header">
   <div class="pull-right">
-    <a class="btn btn-info" href="/tasks/<%= @task.id %>/edit">Edit</a>
+    <%= link_to 'Edit', edit_project_task_path(@project, @task), class: 'btn btn-info'   %>
   </div>
   <h1> <%= @task.description %></h1>
 </div>

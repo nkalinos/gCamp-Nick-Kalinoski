@@ -16,6 +16,8 @@ class TasksController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
+    @task = Task.find(params[:id])
+    @project = Project.find(params[:project_id])
   end
 
   # GET /tasks/new
@@ -26,6 +28,8 @@ class TasksController < ApplicationController
 
   # GET /tasks/1/edit
   def edit
+    @task = Task.find(params[:id])
+    @project = Project.find(params[:project_id])
   end
 
   # POST /tasks
@@ -33,9 +37,10 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     @project = Project.find(params[:project_id])
+    @task.project_id = params[:project_id]
 
     if @task.save
-      redirect_to project_tasks_path(@project), notice: 'Task was successfully created.'
+      redirect_to project_tasks_path(@project, @task ), notice: 'Task was successfully created.'
     else
       render :new
     end
@@ -45,26 +50,23 @@ class TasksController < ApplicationController
 # PATCH/PUT /tasks/1
 # PATCH/PUT /tasks/1.json
 def update
-
-
-  respond_to do |format|
+  @task = Task.find(params[:id])
+  @project = Project.find(params[:project_id])
     if @task.update(task_params)
-      format.html { redirect_to @task, notice: 'Task was successfully updated.' }
-      format.json { render :show, status: :ok, location: @task }
+      redirect_to project_task_path(@project, @task), notice: 'Task was successfully updated.'
     else
-      format.html { render :edit }
-      format.json { render json: @task.errors, status: :unprocessable_entity }
+      render :edit
     end
-  end
 end
 
 # DELETE /tasks/1
 # DELETE /tasks/1.json
 def destroy
+  @task = Task.find(params[:id])
+  @project = Project.find(params[:project_id])
   @task.destroy
-  respond_to do |format|
-    format.html { redirect_to tasks_url, notice: 'Task was successfully deleted.' }
-    format.json { head :no_content }
+  redirect_to project_tasks_url, notice: 'Task was successfully deleted.' 
+    
   end
 end
 
@@ -76,6 +78,7 @@ end
 
 # Never trust parameters from the scary internet, only allow the white list through.
 def task_params
-  params.require(:task).permit(:description, :date, :box, :project_id)
+  params.require(:task).permit(:description, :date, :box)
 end
+
 end

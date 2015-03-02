@@ -23,10 +23,10 @@
       <tr>
 
         <td><%= link_to project.name, project %></td>
-      <td>  <%= project.tasks.count %> </td>
+      <td>  <%= link_to project.tasks.count, project_tasks_path(project) %> </td>
         <td><div class="text-right">
 
-          
+
 
           <%= link_to 'Edit', edit_project_path(project), class: "btn btn-info" %>
 

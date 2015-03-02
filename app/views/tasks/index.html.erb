@@ -4,7 +4,7 @@
   <div class="page-header">
     <div class="pull-right">
 
-    <%= link_to 'New Task', new_project_task_path(@project), class: "btn btn-info" %>
+    <%= link_to 'New Task', new_project_task_path, class: "btn btn-info" %>
 
   </div>
 <h1>Listing Tasks</h1>
@@ -18,7 +18,7 @@
   </thead>
 
   <tbody>
-    <% @tasks.each do |task| %>
+    <% @project.tasks.each do |task| %>
     <tr>
 
       <td><%= link_to task.description, project_task_path(@project, task) %></td>
