@@ -47,38 +47,38 @@ class TasksController < ApplicationController
   end
 
 
-# PATCH/PUT /tasks/1
-# PATCH/PUT /tasks/1.json
-def update
-  @task = Task.find(params[:id])
-  @project = Project.find(params[:project_id])
+  # PATCH/PUT /tasks/1
+  # PATCH/PUT /tasks/1.json
+  def update
+    @task = Task.find(params[:id])
+    @project = Project.find(params[:project_id])
     if @task.update(task_params)
       redirect_to project_task_path(@project, @task), notice: 'Task was successfully updated.'
     else
       render :edit
     end
-end
-
-# DELETE /tasks/1
-# DELETE /tasks/1.json
-def destroy
-  @task = Task.find(params[:id])
-  @project = Project.find(params[:project_id])
-  @task.destroy
-  redirect_to project_tasks_url, notice: 'Task was successfully deleted.' 
-    
   end
-end
 
-private
-# Use callbacks to share common setup or constraints between actions.
-def set_task
-  @task = Task.find(params[:id])
-end
+  # DELETE /tasks/1
+  # DELETE /tasks/1.json
+  def destroy
+    @task = Task.find(params[:id])
+    @project = Project.find(params[:project_id])
+    @task.destroy
+    redirect_to project_tasks_url, notice: 'Task was successfully deleted.'
 
-# Never trust parameters from the scary internet, only allow the white list through.
-def task_params
-  params.require(:task).permit(:description, :date, :box)
-end
+  end
+
+
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_task
+    @task = Task.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def task_params
+    params.require(:task).permit(:description, :date, :box)
+  end
 
 end
