@@ -5,9 +5,6 @@
   </div>
   <h1> <%= @project.name %></h1>
 </div>
-<%= link_to "Project Tasks", project_tasks_path(@project) %>
-<%= link_to "New Task", new_project_task_path(@project) %>
-<%= link_to "Members", project_memberships_path(@project)  %>
 
 
 
@@ -18,3 +15,6 @@
   </ol>
 
 </p>
+
+<div><%= link_to pluralize(@project.tasks.count, "Task"), project_tasks_path(@project, @task)%></div>
+<div> <%= link_to pluralize(@project.memberships.count, 'Members'), project_memberships_path(@project) %></div>
