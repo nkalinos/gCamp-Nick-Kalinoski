@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :registrations, only: [:new, :create]
 
   resources :projects do
-    resources :tasks
+    resources :tasks, :memberships
   end
 
   root 'welcome#index'
