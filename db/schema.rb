@@ -19,10 +19,14 @@ ActiveRecord::Schema.define(version: 20150309214725) do
   create_table "memberships", force: :cascade do |t|
     t.integer "project_id"
     t.integer "user_id"
-    t.boolean "role"
+    t.integer "role_id"
   end
 
   create_table "projects", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "roles", force: :cascade do |t|
     t.string "name"
   end
 

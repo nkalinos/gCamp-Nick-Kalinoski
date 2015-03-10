@@ -1,10 +1,12 @@
 class MembershipsController < ApplicationController
 
   def index
-    @memberships = Membership.all
     @project = Project.find(params[:project_id])
-    @membership = @project.memberships.new
+    @memberships = @project.memberships
+    @users = User.all
+    @roles = Role.all
   end
-  
+
+
 
 end

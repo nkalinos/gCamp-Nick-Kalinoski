@@ -3,7 +3,10 @@ class CreateMembership < ActiveRecord::Migration
     create_table :memberships do |t|
       t.integer :project_id
       t.integer :user_id
-      t.boolean :role
+      t.integer :role_id
+    end
+    create_table :roles do |t|
+      t.string :name
     end
   end
 end
