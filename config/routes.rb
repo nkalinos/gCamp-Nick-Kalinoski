@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :tasks do
     resource :comments, only: [:new, :show, :create]
   end
-  resources :membersips
+  resources :memberships
 end
 
   root 'welcome#index'
