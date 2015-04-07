@@ -48,7 +48,8 @@ group :development, :test do
 
   gem 'rspec-rails'
   gem 'capybara'
-  gem 'byebug'
+  gem 'pry-byebug'
+  gem 'pry-rails'
   gem "spring-commands-rspec"
 
 

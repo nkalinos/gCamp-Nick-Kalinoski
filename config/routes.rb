@@ -5,8 +5,11 @@ Rails.application.routes.draw do
   resources :registrations, only: [:new, :create]
 
   resources :projects do
-    resources :tasks, :memberships
+    resources :tasks do
+    resource :comments, only: [:new, :show, :create]
   end
+  resources :membersips
+end
 
   root 'welcome#index'
   get 'faq' =>'common_questions#index'

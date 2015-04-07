@@ -18,6 +18,9 @@ class TasksController < ApplicationController
   def show
     @task = Task.find(params[:id])
     @project = Project.find(params[:project_id])
+    @comment = Comment.new
+    @user = @comment.user_id
+
   end
 
   # GET /tasks/new
@@ -68,6 +71,8 @@ class TasksController < ApplicationController
     redirect_to project_tasks_url, notice: 'Task was successfully deleted.'
 
   end
+
+
 
 
   private
