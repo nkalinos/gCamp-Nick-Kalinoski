@@ -21,8 +21,10 @@
     <% @project.tasks.each do |task| %>
     <tr>
 
-      <td><%= link_to task.description, project_task_path(@project, task) %></td>
-      <td><div class="text-right">
+      <td><%= link_to task.description, project_task_path(@project, task) %>
+        <span class='badge'><%= task.comments.count %></span> </td>
+      <td>
+        <div class="text-right">
 
           <%= link_to 'Edit', edit_project_task_path(@project, task), class: "btn btn-info" %>
 
