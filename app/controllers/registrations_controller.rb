@@ -9,7 +9,7 @@ class RegistrationsController <ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_path, notice: 'User Successfully Created!'
+      redirect_to new_project_path, notice: 'User Successfully Created!'
     else
       render :new
     end
