@@ -1,0 +1,40 @@
+<body>
+  <h1> <%= @project.name %></h1>
+  <div class="container">
+    <div class="page-header">
+
+      <p>
+        <ol class="breadcrumb">
+          <li><a href="/Projects">Projects</a></li>
+          <li class="active"><%= @project.name %></li>
+        </ol>
+      </p>
+    </div>
+  </div>
+
+  <%= form_for [@project, @membership] do |f| %>
+
+  <div class="well form-inline">
+    <em><%= f.collection_select :user_id, User.all, :id, :full_name, {include_blank: 'Please select a user...'},{class: 'form-control'} %></em>
+    <em><%= f.collection_select :role, Membership.roles, :last, :first, {include_blank: false}, class: "form-control"  %></em>
+    <em><%= f.submit class: 'btn btn-primary' %></em>
+  </div>
+  <% end %>
+
+<div class="form-inline">
+  <% @project.memberships.each do |member| %>
+  <br>
+  <%= form_for [@project, member] do |f| %>
+  <div class="form-group col-md-2">
+    <%= link_to member.user.full_name, user_path(member.user) %>
+  </div>
+  <div class="form-group">
+    <%= f.hidden_field :user_id, value: member.user.id %>
+    <%= f.collection_select :role, Membership.capital_roles, :last, :first, {include_blank: false}, {class: "form-control"} %>
+    <%= f.submit 'Update', class: 'btn btn-info' %>
+  <em><%= link_to '', project_membership_path(@project, member), method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-remove'  %>
+</em>
+</div>
+<% end %>
+<% end %>
+</body>
