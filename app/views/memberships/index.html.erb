@@ -1,3 +1,4 @@
+
 <body>
   <h1> <%= @project.name %></h1>
   <div class="container">
@@ -5,20 +6,26 @@
 
       <p>
         <ol class="breadcrumb">
-          <li><a href="/Projects">Projects</a></li>
-          <li class="active"><%= @project.name %></li>
+          <li class='active'><%= link_to 'Projects', projects_path %></li>
+          <li class="active"><%= link_to @project.name, project_path(@project) %></li>
+          <li class="active">Memberships</li>
         </ol>
       </p>
     </div>
   </div>
 
   <%= form_for [@project, @membership] do |f| %>
+  <div class="form-inline">
+
+  <%= render(:partial => "shared/errors", :locals => {:object => @membership}) %>
+</div>
 
   <div class="well form-inline">
     <em><%= f.collection_select :user_id, User.all, :id, :full_name, {include_blank: 'Please select a user...'},{class: 'form-control'} %></em>
     <em><%= f.collection_select :role, Membership.roles, :last, :first, {include_blank: false}, class: "form-control"  %></em>
     <em><%= f.submit class: 'btn btn-primary' %></em>
   </div>
+
   <% end %>
 
 <div class="form-inline">
