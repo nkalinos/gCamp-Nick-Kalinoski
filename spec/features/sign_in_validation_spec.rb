@@ -14,8 +14,15 @@ describe "Guest can Sign Up successfully" do
     within(".well") do
       click_on "Sign Up"
     end
+
+
+      click_on "Sign out"
+      expect(page).to have_content("Bye!")
+
+
     click_on "Sign in"
-    fill_in "Password", with: "jade09"
+    fill_in "Email", with: ""
+    fill_in "Password", with: ""
 
     within(".well") do
       click_on "Sign In"

@@ -20,8 +20,9 @@ describe "Guest can Sign Up successfully" do
     expect(page).to have_content("User Successfully Created!")
   end
 
-  it 'New User is redirected to homepage' do
-    expect(page).to have_content("Your life, organized.")
+  it 'New User is redirected to New Project' do
+    expect(page).to have_content("Create Project")
   end
 
+  
 end

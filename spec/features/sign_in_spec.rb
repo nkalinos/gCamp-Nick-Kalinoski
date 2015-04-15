@@ -15,16 +15,17 @@ describe "Guest can Sign Up successfully" do
       click_on "Sign Up"
     end
 
+
+  end
+
+  it 'user can sign in' do
+    click_on "Sign out"
     click_on "Sign in"
     fill_in "Email", with: "yogurtbrothers@gmail.com"
     fill_in "Password", with: "jade09"
-
     within(".well") do
       click_on "Sign In"
     end
-  end
-
-  it 'can sign in' do
     expect(page).to have_content("Welcome back!")
   end
 end
