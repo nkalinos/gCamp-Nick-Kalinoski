@@ -56,6 +56,9 @@ class ProjectsController <ApplicationController
   private
   def set_project
     @project = Project.find(params[:id])
+    unless @project.users.include?(current_user)
+      redirect_to projects_path, alert: 'You do not have access to that project.'
+    end
   end
 
   def project_params
