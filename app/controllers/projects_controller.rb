@@ -20,13 +20,17 @@ class ProjectsController <ApplicationController
 
 
     if @project.save
+  if @project.memberships.create(user: current_user, role: :owner)
 
       redirect_to @project, notice: 'Project was successfully created.'
     else
       render :new
+      @project.destroy
     end
+  else
+    render :new
   end
-
+end
   def update
 
       if @project.update(project_params)
@@ -40,7 +44,7 @@ class ProjectsController <ApplicationController
 
   def show
     @project = Project.find(params[:id])
-  
+
   end
 
   def edit
