@@ -1,6 +1,7 @@
 class ProjectsController <ApplicationController
 
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_owner, only: [:update, :edit, :destroy]
   before_filter :authenticate
 
   def authenticate
@@ -63,5 +64,12 @@ class ProjectsController <ApplicationController
 
   def project_params
     params.require(:project).permit(:name)
+  end
+
+  def set_owner
+    @project = Project.find(params[:id])
+    unless current_user.project_owner(@project)
+      redirect_to project_path(@project), notice: 'You do not have access.'
+    end
   end
 end

@@ -1,7 +1,9 @@
 
 <div class="page-header">
   <div class="pull-right">
+    <% if current_user.project_owner(@project) %>
     <a class="btn btn-info" href="/projects/<%= @project.id %>/edit">Edit</a>
+    <% end  %>
   </div>
   <h1> <%= @project.name %></h1>
 </div>
@@ -20,11 +22,12 @@
 <div> <%= link_to pluralize(@project.memberships.count, 'Members'), project_memberships_path(@project) %></div>
 
 <p>
+  <% if current_user.project_owner(@project) %>
   <div class="well">
     <h4>Delete</h4>
     Deleting this project will also delete (<%= @project.memberships.count %>) membership(s), (<%= @project.tasks.count %>) task(s) and associated comments
     <br>
     <p><%= link_to 'Delete', @project, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></p>
   </p>
-
+<% end %>
   </div>
