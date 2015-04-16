@@ -22,7 +22,7 @@
 
   <div class="well form-inline">
     <em><%= f.collection_select :user_id, User.all, :id, :full_name, {include_blank: 'Please select a user...'},{class: 'form-control'} %></em>
-    <em><%= f.collection_select :role, Membership.roles, :first, :first, {include_blank: false}, class: "form-control"  %></em>
+    <em><%= f.select(:role, [["Member", :member],["Owner", :owner]], {blank: "hi"}, class: "form-control") %></em>
     <em><%= f.submit class: 'btn btn-primary' %></em>
   </div>
 
@@ -41,7 +41,7 @@
 <% end %>
   <div class="form-group">
     <%= f.hidden_field :user_id, value: member.user.id %>
-    <%= f.collection_select :role, Membership.capital_roles, :first, :first, {include_blank: false}, {class: "form-control"} %>
+    <%= f.select(:role, [["Member", :member],["Owner", :owner]], {blank: "hi"}, class: "form-control") %>
     <%= f.submit 'Update', class: 'btn btn-info' %>
   <em><%= link_to '', project_membership_path(@project, member), method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-remove'  %>
 </em>
