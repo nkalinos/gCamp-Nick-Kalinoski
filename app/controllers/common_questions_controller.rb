@@ -1,4 +1,4 @@
-class CommonQuestionsController <ApplicationController
+class CommonQuestionsController <MarketingController
  def index
    question1 = CommonQuestion.new
    question1.question = "What is gCamp?"

@@ -1,4 +1,4 @@
-class AboutController <ApplicationController
+class AboutController <MarketingController
   def index
     @project = Project.all
     @task = Task.all

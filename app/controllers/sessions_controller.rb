@@ -1,4 +1,4 @@
-class SessionsController < ApplicationController
+class SessionsController < MarketingController
 
  def new
    @user = User.new
