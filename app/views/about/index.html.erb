@@ -12,6 +12,13 @@
       <p class ="lead">
         <%= image_tag("about page image.jpg", class: "img-responsive") %>
       </p>
+      <p>
+        <h4>gCamp is extremely active. Check outour killer stats below!</h4>
+      </p>
+      <p>
+        <p> <%= @project.count %> Projects, <%= @task.count %> Tasks, <%= @membership.count %> Memberships, <%= @user.count %> Users, <%= @comment.count %> Comments </p>
+
+      </p>
 </div>
 
 
@@ -22,7 +29,6 @@
   <br>
   <p>  Human collaboration and communication is what drives us, and it infuses every feature of gCamp.</p>
   <br>
-  <p> <%= @project.count %> Projects, <%= @task.count %> Tasks, <%= @membership.count %> Memberships, <%= @user.count %> Users, <%= @comment.count %> Comments </p>
 </div>
 </div>
 </div>

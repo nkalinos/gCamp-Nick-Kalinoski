@@ -20,17 +20,15 @@ class ProjectsController <ApplicationController
 
 
     if @project.save
-      if @project.memberships.create(user: current_user, role: :owner)
-
+      if @project.memberships.create(user: current_user, role: "Owner")
         redirect_to @project, notice: 'Project was successfully created.'
       else
         render :new
         @project.destroy
-
-      
         end
       end
     end
+
   def update
 
     if @project.update(project_params)

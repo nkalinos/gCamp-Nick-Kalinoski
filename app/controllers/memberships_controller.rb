@@ -16,7 +16,7 @@ class MembershipsController < ApplicationController
     @membership = Membership.new
     @membership.user_id = membership_params[:user_id]
     @membership.role = membership_params[:role].to_i
-    @membership.project = @project
+    @membership.project_id = @project.id
     if @membership.save
      redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name} was successfully added."
     else
@@ -35,7 +35,7 @@ class MembershipsController < ApplicationController
    def update
      @project = Project.find(params[:project_id])
      @membership = Membership.find(params[:id])
-       if @membership.update(membership_params)
+       if @membership.update(project)
        redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name} was successfully updated"
      end
    end
