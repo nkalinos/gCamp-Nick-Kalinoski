@@ -9,7 +9,11 @@ class ProjectsController <ApplicationController
   end
 
   def index
-    @projects = Project.all
+    if admin_user
+      @projects = Project.all
+    else
+      @projects = current_user.projects
+    end
   end
 
   def new
@@ -57,7 +61,7 @@ class ProjectsController <ApplicationController
   private
   def set_project
     @project = Project.find(params[:id])
-    unless @project.users.include?(current_user)
+    unless @project.users.include?(current_user) || admin_user
       redirect_to projects_path, alert: 'You do not have access to that project.'
     end
   end
@@ -68,7 +72,7 @@ class ProjectsController <ApplicationController
 
   def set_owner
     @project = Project.find(params[:id])
-    unless current_user.project_owner(@project)
+    unless current_user.project_owner(@project) || admin_user
       redirect_to project_path(@project), notice: 'You do not have access.'
     end
   end

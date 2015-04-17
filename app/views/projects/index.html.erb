@@ -19,21 +19,24 @@
     </thead>
 
     <tbody>
-      <% current_user.projects.each do |project| %>
+      <% @projects.each do |project| %>
       <tr>
+        <% if @membership == current_user  || admin_user %>
         <td><%= link_to project.name, project %></td>
       <td><%= link_to pluralize(project.tasks.count, "Task"), project_tasks_path(project, @task)%> </td>
 
         <td><div class="text-right">
-          <% if current_user %>
+          <% if current_user || @admin_user %>
           <%= link_to 'Edit', edit_project_path(project), class: "btn btn-info" %>
           <%= link_to '', project, method: :delete, data: { confirm: 'Are you sure?' }, class: "glyphicon glyphicon-remove" %>
           <% end %>
         </div>
       </td>
+
     </tr>
+<% end %>
     <% end %>
-</tbody>
+    </tbody>
 </table>
 
 <br>

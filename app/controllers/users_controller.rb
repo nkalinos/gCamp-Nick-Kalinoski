@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate
   def authenticate
-    redirect_to login_path, :alert => 'You need to be logged in to see this.' if not current_user || admin
+    redirect_to login_path, :alert => 'You need to be logged in to see this.' if not current_user || admin_user
   end
 
   def index
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    unless current_user == @user
+    unless current_user == @user || admin_user
       render file: "/public/404.html",
       :status => 404, :layout => false
     end

@@ -65,7 +65,7 @@ end
 
   def set_project
     @project = Project.find(params[:project_id])
-    unless @project && @project.users.include?(current_user)
+    unless @project && @project.users.include?(current_user) || @admin_user
       redirect_to projects_path, alert: 'You do not have access to that project.'
     end
   end
@@ -76,7 +76,7 @@ end
 
   def set_owner
     @project = Project.find(params[:project_id])
-    unless current_user.project_owner(@project)
+    unless current_user.project_owner(@project) || @admin_user
       redirect_to project_path(@project), alert: 'You are not authorized.'
     end
   end
