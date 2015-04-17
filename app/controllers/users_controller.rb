@@ -20,6 +20,10 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    unless current_user == @user
+      render file: "/public/404.html",
+      :status => 404, :layout => false
+    end
   end
 
   def create
@@ -31,7 +35,7 @@ class UsersController < ApplicationController
          render :new
       end
     end
-  
+
 
     def update
       @user = User.find(params[:id])

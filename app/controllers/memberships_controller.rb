@@ -77,7 +77,7 @@ end
   def set_owner
     @project = Project.find(params[:project_id])
     unless current_user.project_owner(@project)
-      redirect_to project_path(@project), alert: 'You do not have access.'
+      redirect_to project_path(@project), alert: 'You are not authorized.'
     end
   end
 
