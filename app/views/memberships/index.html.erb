@@ -19,12 +19,14 @@
 
   <%= render(:partial => "shared/errors", :locals => {:object => @membership}) %>
 </div>
-
+<% if current_user.project_owner(@project) %>
   <div class="well form-inline">
     <em><%= f.collection_select :user_id, User.all, :id, :full_name, {include_blank: 'Please select a user...'},{class: 'form-control'} %></em>
     <em><%= f.select(:role, [["Member", :member],["Owner", :owner]], {blank: "hi"}, class: "form-control") %></em>
     <em><%= f.submit class: 'btn btn-primary' %></em>
   </div>
+  <% end %>
+
 
   <% end %>
 
