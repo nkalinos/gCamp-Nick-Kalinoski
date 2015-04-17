@@ -8,7 +8,12 @@ class SessionsController < MarketingController
    @user = User.find_by(email: params[:email])
    if @user && @user.authenticate(params[:password])
      session[:user_id] = @user.id
+     if session[:previous_url] == nil
      redirect_to projects_path, notice: 'Welcome back!'
+   else
+     redirect_to session[:previous_url], notice: 'Welcome back!'
+     session[:previous_url] = nil
+   end
    else
      flash[:alert] = "Invalid email / password"
      render :new
