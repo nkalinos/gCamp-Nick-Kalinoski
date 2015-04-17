@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate
   def authenticate
-    redirect_to login_path, :alert => 'You need to be logged in to see this.' if not current_user
+    redirect_to login_path, :alert => 'You need to be logged in to see this.' if not current_user || admin
   end
 
   def index
@@ -60,6 +60,7 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:first_name, :last_name, :email, :password)
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :admin)
     end
 
 
