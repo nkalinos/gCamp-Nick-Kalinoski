@@ -1,4 +1,4 @@
-
+`
 <body>
   <h1> <%= @project.name %></h1>
   <div class="container">
@@ -17,9 +17,9 @@
   <%= form_for [@project, @membership] do |f| %>
   <div class="form-inline">
 
-  <%= render(:partial => "shared/errors", :locals => {:object => @membership}) %>
-</div>
-<% if current_user.project_owner(@project) %>
+    <%= render(:partial => "shared/errors", :locals => {:object => @membership}) %>
+  </div>
+  <% if current_user.project_owner(@project) %>
   <div class="well form-inline">
     <em><%= f.collection_select :user_id, User.all, :id, :full_name, {include_blank: 'Please select a user...'},{class: 'form-control'} %></em>
     <em><%= f.select(:role, [["Member", :member],["Owner", :owner]], {blank: "hi"}, class: "form-control") %></em>
@@ -30,25 +30,24 @@
 
   <% end %>
 
-<div class="form-inline">
-  <% @project.memberships.each do |member| %>
-  <br>
-  <%= form_for [@project, member] do |f| %>
-  <div class="form-group col-md-2">
-    <%= link_to member.user.full_name, user_path(member.user) %>
-  </div>
-  <% if member.user == current_user %>
+  <div class="form-inline">
+    <% @project.memberships.each do |member| %>
+    <br>
 
-  <% else %>
-<% end %>
-  <div class="form-group">
-    <%= f.hidden_field :user_id, value: member.user.id %>
-    <%= f.select(:role, [["Member", :member],["Owner", :owner]], {blank: "hi"}, class: "form-control") %>
-    <%= f.submit 'Update', class: 'btn btn-info' %>
-  <% if current_user.id == member.user_id %>
-  <em><%= link_to '', project_membership_path(@project, member), method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-remove'  %></em>
-  <% end %>
-</div>
-<% end %>
-<% end %>
+    <%= form_for [@project, member] do |f| %>
+    <div class="form-group col-md-2">
+      <%= link_to member.user.full_name, user_path(member.user) %>
+    </div>
+    <div class="form-group">
+      <%= f.hidden_field :user_id, value: member.user_id %>
+      <%= f.select(:role, [["Member", :member],["Owner", :owner]], {blank: "hi"}, class: "form-control") %>
+      <%= f.submit 'Update', class: 'btn btn-info' %>
+      <% if current_user.id == member.user_id %>
+      <em><%= link_to '', project_membership_path(@project, member), method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-remove'  %></em>
+      <% end %>
+    </div>
+    <% end %>
+    <% end %>
+  </div>
 </body>
+`
