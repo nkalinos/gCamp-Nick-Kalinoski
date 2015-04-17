@@ -45,8 +45,9 @@
     <%= f.hidden_field :user_id, value: member.user.id %>
     <%= f.select(:role, [["Member", :member],["Owner", :owner]], {blank: "hi"}, class: "form-control") %>
     <%= f.submit 'Update', class: 'btn btn-info' %>
-  <em><%= link_to '', project_membership_path(@project, member), method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-remove'  %>
-</em>
+  <% if current_user.id == member.user_id %>
+  <em><%= link_to '', project_membership_path(@project, member), method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-remove'  %></em>
+  <% end %>
 </div>
 <% end %>
 <% end %>
