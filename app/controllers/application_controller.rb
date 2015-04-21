@@ -6,13 +6,13 @@ class ApplicationController < ActionController::Base
   helper_method :admin_user
   def current_user
    User.find_by_id(session[:user_id])
- end
+  end
 
  def admin_user
    if current_user
-  current_user.admin == true
-end
-  end
+     current_user.admin == true
+   end
+ end
 
  def authenticate
    session[:previous_url] = request.fullpath
